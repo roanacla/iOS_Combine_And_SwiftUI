@@ -43,6 +43,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         .store(in: &subscriptions)
 
     let rootView = ReaderView(model: viewModel)
+        .environmentObject(userSettings)
     
     if let windowScene = scene as? UIWindowScene {
       let window = UIWindow(windowScene: windowScene)

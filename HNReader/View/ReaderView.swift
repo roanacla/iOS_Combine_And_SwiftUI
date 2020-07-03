@@ -34,6 +34,7 @@ struct ReaderView: View {
   @State var presentingSettingsSheet = false
   @Environment(\.colorScheme) var colorScheme: ColorScheme
   @State var currentDate = Date()
+  @EnvironmentObject var settings: Settings
   private let timer = Timer.publish(every: 10, on: .main, in: .common)
     .autoconnect() //Timers needs requires a subscriber to connect to activate. With autoconnect it will automatically start as soon as the view generates.
     .eraseToAnyPublisher()
@@ -73,7 +74,7 @@ struct ReaderView: View {
         }.padding()
       }
       .sheet(isPresented: self.$presentingSettingsSheet, content: {
-        SettingsView()
+        SettingsView().environmentObject(self.settings)
       })
       .alert(item: self.$model.error) { error in
         Alert(
@@ -98,6 +99,7 @@ struct ReaderView_Previews: PreviewProvider {
     let viewModel = ReaderViewModel()
     viewModel.fetchStories()
     return ReaderView(model: viewModel)
+      .environment(\.colorScheme, .dark)
   }
 }
 #endif
