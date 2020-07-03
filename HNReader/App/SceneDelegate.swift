@@ -28,13 +28,19 @@
 
 import UIKit
 import SwiftUI
+import Combine
 
 class SceneDelegate: UIResponder, UIWindowSceneDelegate {
   
   var window: UIWindow?
-  
+  private var subscriptions = Set<AnyCancellable>()
   func scene(_ scene: UIScene, willConnectTo session: UISceneSession, options connectionOptions: UIScene.ConnectionOptions) {
+    let userSettings = Settings()
     let viewModel = ReaderViewModel()
+    userSettings.$keywords
+        .map{ $0.map { $0.value } }
+        .assign(to: \.filter, on: viewModel)
+        .store(in: &subscriptions)
 
     let rootView = ReaderView(model: viewModel)
     

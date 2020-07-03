@@ -45,3 +45,9 @@ struct PostedBy: View {
       .foregroundColor(Color.gray)
   }
 }
+
+struct PostedBy_Previews: PreviewProvider {
+    static var previews: some View {
+        PostedBy(time: TimeInterval(), user: "Roger", currentDate: Date())
+    }
+}

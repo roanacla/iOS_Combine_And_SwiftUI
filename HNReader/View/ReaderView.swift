@@ -27,12 +27,16 @@
 /// THE SOFTWARE.
 
 import SwiftUI
+import Combine
 
 struct ReaderView: View {
   @ObservedObject var model: ReaderViewModel
   @State var presentingSettingsSheet = false
-  
-  var currentDate = Date()
+  @Environment(\.colorScheme) var colorScheme: ColorScheme
+  @State var currentDate = Date()
+  private let timer = Timer.publish(every: 10, on: .main, in: .common)
+    .autoconnect() //Timers needs requires a subscriber to connect to activate. With autoconnect it will automatically start as soon as the view generates.
+    .eraseToAnyPublisher()
   
   init(model: ReaderViewModel) {
     self.model = model
@@ -58,12 +62,14 @@ struct ReaderView: View {
                 print(story)
               }
               .font(.subheadline)
-              .foregroundColor(Color.blue)
+              .foregroundColor(self.colorScheme == .light ? .blue : .orange)
               .padding(.top, 6)
             }
             .padding()
           }
-          // Add timer here
+          .onReceive(timer){
+            self.currentDate = $0
+          }
         }.padding()
       }
       .sheet(isPresented: self.$presentingSettingsSheet, content: {
@@ -89,7 +95,9 @@ struct ReaderView: View {
 #if DEBUG
 struct ReaderView_Previews: PreviewProvider {
   static var previews: some View {
-    ReaderView(model: ReaderViewModel())
+    let viewModel = ReaderViewModel()
+    viewModel.fetchStories()
+    return ReaderView(model: viewModel)
   }
 }
 #endif

@@ -37,7 +37,7 @@ class ReaderViewModel: ObservableObject {
   
   @Published var error: API.Error? = nil
     
-  var filter = [String]()
+  @Published var filter = [String]()
   
   var stories: [Story] {
     guard !filter.isEmpty else {
