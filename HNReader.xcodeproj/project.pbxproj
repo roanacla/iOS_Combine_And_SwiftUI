@@ -40,7 +40,7 @@
 		9C5A2B7422E72DB1000FE39A /* AddKeywordView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddKeywordView.swift; sourceTree = "<group>"; };
 		9C5A2B7922E79A95000FE39A /* TimeBadge.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeBadge.swift; sourceTree = "<group>"; };
 		9C5A2B7D22E841D8000FE39A /* Story.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Story.swift; sourceTree = "<group>"; };
-		9CB4AC3D22E85495002E8C8C /* ReaderViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReaderViewModel.swift; sourceTree = "<group>"; };
+		9CB4AC3D22E85495002E8C8C /* ReaderViewModel.swift */ = {isa = PBXFileReference; indentWidth = 2; lastKnownFileType = sourcecode.swift; path = ReaderViewModel.swift; sourceTree = "<group>"; tabWidth = 2; };
 		9CB4AC4122E865F8002E8C8C /* Settings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Settings.swift; sourceTree = "<group>"; };
 		9CD67C1C22E8BC9E00D1D0D0 /* FilterKeyword.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilterKeyword.swift; sourceTree = "<group>"; };
 		9CD67C1E22E8C6A600D1D0D0 /* PostedBy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostedBy.swift; sourceTree = "<group>"; };

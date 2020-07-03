@@ -27,11 +27,19 @@
 /// THE SOFTWARE.
 
 import Foundation
+import Combine
 
 class ReaderViewModel {
   private let api = API()
-  private var allStories = [Story]()
-
+  private var allStories = [Story]() {
+    didSet {
+      print(allStories.count)
+    }
+  }
+  private var subscriptions = Set<AnyCancellable>()
+  
+  var error: API.Error? = nil
+    
   var filter = [String]()
   
   var stories: [Story] {
@@ -46,5 +54,18 @@ class ReaderViewModel {
       }
   }
   
-  var error: API.Error? = nil
+    func fetchStories() {
+        api
+        .stories()
+        .receive(on: DispatchQueue.main)
+        .sink(receiveCompletion: { completion in
+          if case .failure(let error) = completion {
+            self.error = error
+          }
+        }, receiveValue: { stories in
+          self.allStories = stories
+          self.error = nil
+        })
+        .store(in: &subscriptions)
+    }
 }

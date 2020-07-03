@@ -43,7 +43,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
       window.rootViewController = UIHostingController(rootView: rootView)
       self.window = window
       window.makeKeyAndVisible()
-      
+      viewModel.fetchStories()
     }
   }
 }
